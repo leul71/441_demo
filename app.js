@@ -6,8 +6,20 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.send('Hello');
+app.get('/hello', (req, res) => {
+  const name = req.query.name;
+  res.type('html');
+  res.send (`
+  <html>
+    <head>
+      <title> Hello ${name}</title>
+    </head>
+    <body>
+      Hello ${name}
+    </body>
+</html>
+  `)
+
 });
 
 app.listen(port, () =>{
